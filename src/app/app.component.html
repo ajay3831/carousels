@@ -1,0 +1,17 @@
+<div class="app-wrapper">
+
+  <div class="carousel-wrapper">
+    <button class="btn prev" (click)="prev()"><</button>
+
+    <div class="carousel">
+  
+      <div class="card-container" [ngStyle]="{left: leftPosition + 'px'}">
+          <display-card *ngFor="let detail of cardDetails" [displayDetail]="detail"></display-card>
+      </div>
+      
+    </div>
+
+    <button class="btn next" (click)="next()">></button>
+  </div>
+
+</div>

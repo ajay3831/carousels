@@ -1,17 +1,15 @@
-<div class="app-wrapper">
-
-  <div class="carousel-wrapper">
-    <button class="btn prev" (click)="prev()"><</button>
-
-    <div class="carousel">
-  
-      <div class="card-container" [ngStyle]="{left: leftPosition + 'px'}">
-          <display-card *ngFor="let detail of cardDetails" [displayDetail]="detail"></display-card>
-      </div>
-      
-    </div>
-
-    <button class="btn next" (click)="next()">></button>
+<div class="main-container">
+  <button *ngIf="leftPosition < 0" class="prev" (click)="prev()"><</button>
+  <div class="carousel-container" [style.left.%]="leftPosition" [style.transition]="transitionEffect">
+    <ul>
+      <li *ngFor="let detail of cardDetails">
+        <display-card [displayDetail]="detail"></display-card>
+      </li>
+    </ul>
   </div>
+  <button *ngIf="leftPosition > (-100 * (cardDetails.length-1))" class="next" (click)="next()">></button>
 
+  <div class="indicator-container">
+    <div class="indicator" *ngFor="let detail of cardDetails; let i = index" (click)="moveToSlideAt(i)" [ngStyle]=" i==(leftPosition / -100 ) && {'background-color': '#292826'}" ></div>
+  </div>
 </div>
